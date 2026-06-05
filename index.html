@@ -5,10 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🐉 La Libélula de Gael 💙</title>
 <meta name="description" content="La libélula explicada para niños — la exposición de Gael (3 años). ¡Datos curiosos, fotos lindas y mucho color!">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#7ad6f0">
+
+<!-- Compartir en redes (Open Graph / Twitter) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://unimauro.github.io/libelula/">
 <meta property="og:title" content="🐉 La Libélula de Gael">
-<meta property="og:description" content="Descubre a la libélula: sus ojos grandes, sus cuatro alas y cómo vuela tan rápido. ¡Una exposición muy tierna!">
-<meta property="og:image" content="img/portada-libelula.webp">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐉</text></svg>">
+<meta property="og:description" content="Descubre a la libélula: sus ojos grandes, sus cuatro alas y cómo vuela tan rápido. ¡Una exposición muy tierna para niños!">
+<meta property="og:image" content="https://unimauro.github.io/libelula/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="🐉 La Libélula de Gael">
+<meta name="twitter:description" content="Una exposición muy tierna sobre la libélula, para niños. 💙">
+<meta name="twitter:image" content="https://unimauro.github.io/libelula/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -239,6 +255,26 @@
   .ok{color:var(--verde-prof);}
   .no{color:var(--rojo);}
 
+  /* ---------- Compartir ---------- */
+  .compartir{max-width:640px;margin:24px auto 0;padding:0 20px;text-align:center;}
+  .compartir h3{font-size:1.5rem;color:var(--azul-prof);margin-bottom:6px;}
+  .compartir p{font-size:1.02rem;opacity:.8;margin-bottom:16px;}
+  .botones-redes{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+  .botones-redes a, .botones-redes button{
+    font-family:'Baloo 2',cursive;font-weight:700;font-size:1.05rem;
+    color:#fff;text-decoration:none;border:none;cursor:pointer;
+    padding:12px 20px;border-radius:999px;
+    display:inline-flex;align-items:center;gap:8px;
+    box-shadow:0 6px 0 rgba(0,0,0,.18);transition:transform .12s;
+  }
+  .botones-redes a:active,.botones-redes button:active{transform:translateY(4px);box-shadow:0 2px 0 rgba(0,0,0,.18);}
+  .b-wa{background:#25d366;}
+  .b-fb{background:#1877f2;}
+  .b-x{background:#111;}
+  .b-tg{background:#2aabee;}
+  .b-copy{background:linear-gradient(90deg,var(--morado),var(--rosa));}
+  .copiado-msg{margin-top:12px;font-size:1.05rem;color:var(--verde-prof);font-weight:700;min-height:24px;}
+
   /* ---------- Footer ---------- */
   footer{
     text-align:center;padding:40px 20px 60px;margin-top:30px;
@@ -248,6 +284,8 @@
   @keyframes latir{50%{transform:scale(1.25);}}
   footer p{font-size:1.15rem;color:var(--azul-prof);font-weight:600;margin-top:8px;}
   footer .firma{margin-top:10px;font-size:1rem;color:#777;}
+  footer .cierre{margin-top:18px;font-size:1.25rem;font-weight:700;color:var(--morado);font-family:'Baloo 2',cursive;}
+  footer .cierre b{color:var(--rojo);}
 
   /* ---------- Libélula que vuela por la pantalla ---------- */
   .voladora{
@@ -418,16 +456,61 @@
     </div>
   </div>
 
+  <!-- COMPARTIR -->
+  <h2 class="seccion-titulo reveal">💌 ¡Comparte la libélula!</h2>
+  <div class="compartir reveal">
+    <p>Envíasela a tus amiguitos y a la familia 🐉💙</p>
+    <div class="botones-redes">
+      <a class="b-wa" id="sh-wa" target="_blank" rel="noopener" aria-label="Compartir por WhatsApp">💬 WhatsApp</a>
+      <a class="b-fb" id="sh-fb" target="_blank" rel="noopener" aria-label="Compartir en Facebook">👍 Facebook</a>
+      <a class="b-x" id="sh-x" target="_blank" rel="noopener" aria-label="Compartir en X">✖️ X</a>
+      <a class="b-tg" id="sh-tg" target="_blank" rel="noopener" aria-label="Compartir en Telegram">✈️ Telegram</a>
+      <button class="b-copy" onclick="compartirNativo()" aria-label="Compartir o copiar enlace">🔗 Compartir</button>
+    </div>
+    <div class="copiado-msg" id="copiado"></div>
+  </div>
+
   <!-- FOOTER -->
   <footer>
     <span class="corazon">💙</span>
     <p>¡Gracias por conocer a la libélula!</p>
-    <p class="firma">Una exposición con mucho amor de <b>Gael</b> 🐉<br>y de su papá 👨‍👦</p>
+    <p class="firma">Una exposición con mucho amor de <b>Gael</b> 🐉<br>y de todos los que lo aman 💞</p>
+    <p class="cierre">…Y esta fue nuestra <b>Operación Libélula</b> 🐉✨</p>
   </footer>
 
 </div>
 
 <script>
+  // ---- Compartir en redes ----
+  const URL_PAGINA = 'https://unimauro.github.io/libelula/';
+  const TEXTO_SHARE = '🐉 Mira la exposición de la Libélula de Gael, ¡es muy linda! 💙';
+  (function configurarRedes(){
+    const u = encodeURIComponent(URL_PAGINA);
+    const t = encodeURIComponent(TEXTO_SHARE);
+    document.getElementById('sh-wa').href = `https://wa.me/?text=${t}%20${u}`;
+    document.getElementById('sh-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${u}`;
+    document.getElementById('sh-x').href  = `https://twitter.com/intent/tweet?text=${t}&url=${u}`;
+    document.getElementById('sh-tg').href = `https://t.me/share/url?url=${u}&text=${t}`;
+  })();
+
+  // Botón "Compartir": usa el menú nativo del celular si existe, si no copia el enlace
+  async function compartirNativo(){
+    const msg = document.getElementById('copiado');
+    if(navigator.share){
+      try{
+        await navigator.share({title:'La Libélula de Gael', text:TEXTO_SHARE, url:URL_PAGINA});
+        return;
+      }catch(e){ /* el usuario canceló */ return; }
+    }
+    try{
+      await navigator.clipboard.writeText(URL_PAGINA);
+      msg.textContent = '✅ ¡Enlace copiado! Ya lo puedes pegar 💜';
+    }catch(e){
+      msg.textContent = '🔗 ' + URL_PAGINA;
+    }
+    setTimeout(()=>{ msg.textContent=''; }, 4000);
+  }
+
   // Decoración flotante
   const emojis = ['🐉','🌿','💧','☁️','🌸','🍃','⭐','🦋','💙','🌼'];
   const deco = document.getElementById('deco');

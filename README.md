@@ -14,7 +14,7 @@ La página es de una sola pantalla, pensada para niños:
 
 ## 🚀 Ver la página
 
-Se publica con **GitHub Pages**: `https://unimauro.github.io/libelula-gael/`
+Se publica con **GitHub Pages**: `https://unimauro.github.io/libelula/`
 
 ## 🧩 Cómo está hecha
 
