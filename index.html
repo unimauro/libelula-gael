@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐉 La Libélula de Gael 💙</title>
+<meta name="description" content="La libélula explicada para niños — la exposición de Gael (3 años). ¡Datos curiosos, fotos lindas y mucho color!">
+<meta property="og:title" content="🐉 La Libélula de Gael">
+<meta property="og:description" content="Descubre a la libélula: sus ojos grandes, sus cuatro alas y cómo vuela tan rápido. ¡Una exposición muy tierna!">
+<meta property="og:image" content="img/portada-libelula.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐉</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --azul:#2196f3;
+    --azul-prof:#1565c0;
+    --turquesa:#00c2cb;
+    --verde:#7cc644;
+    --verde-prof:#4a9e1e;
+    --amarillo:#ffd23f;
+    --rosa:#ff7eb3;
+    --morado:#9b5de5;
+    --crema:#fff8ee;
+    --texto:#2a2a4a;
+    --rojo:#e02424;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Fredoka',system-ui,sans-serif;
+    color:var(--texto);
+    background:
+      radial-gradient(circle at 15% 10%, #ffe3f1 0, transparent 42%),
+      radial-gradient(circle at 85% 18%, #d8f3ff 0, transparent 45%),
+      radial-gradient(circle at 80% 75%, #e7ffd6 0, transparent 45%),
+      radial-gradient(circle at 20% 85%, #fff5d6 0, transparent 45%),
+      linear-gradient(180deg,#fdf0ff 0%,#eafaff 55%,#f3fff0 100%);
+    background-attachment:fixed;
+    overflow-x:hidden;
+    line-height:1.5;
+  }
+  h1,h2,h3,.titulo{font-family:'Baloo 2',cursive;}
+
+  /* ---------- Nubes / fondo flotante ---------- */
+  .deco{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+  .deco span{position:absolute;font-size:2.4rem;opacity:.55;animation:flotar linear infinite;}
+  @keyframes flotar{
+    0%{transform:translateY(0) rotate(0);}
+    50%{transform:translateY(-22px) rotate(8deg);}
+    100%{transform:translateY(0) rotate(0);}
+  }
+
+  .wrap{position:relative;z-index:1;}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    text-align:center;
+    padding:48px 18px 30px;
+    position:relative;
+  }
+  .hero .estrella{font-size:1.6rem;display:inline-block;animation:girar 6s linear infinite;}
+  @keyframes girar{to{transform:rotate(360deg);}}
+  .hero h1{
+    font-size:clamp(2.6rem,9vw,5rem);
+    font-weight:800;
+    line-height:1;
+    margin:6px 0 4px;
+    color:#fff;
+    -webkit-text-stroke:3px var(--azul-prof);
+    paint-order:stroke fill;
+    text-shadow:0 6px 0 rgba(21,101,192,.25), 0 10px 22px rgba(0,0,0,.18);
+    letter-spacing:1px;
+  }
+  .hero .sub{
+    font-size:clamp(1rem,3.4vw,1.4rem);
+    color:var(--azul-prof);
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .hero .gael{
+    display:inline-block;
+    background:linear-gradient(90deg,var(--rosa),var(--morado));
+    color:#fff;font-weight:700;
+    padding:8px 22px;border-radius:999px;
+    font-size:clamp(1rem,3vw,1.25rem);
+    box-shadow:0 8px 0 rgba(155,93,229,.35);
+    margin-top:10px;
+    transform:rotate(-2deg);
+  }
+  .hero-foto{
+    max-width:340px;width:80%;
+    margin:22px auto 0;
+    display:block;
+    border-radius:32px;
+    border:8px solid #fff;
+    box-shadow:0 18px 40px rgba(33,150,243,.30);
+    animation:meceo 5s ease-in-out infinite;
+  }
+  @keyframes meceo{50%{transform:translateY(-12px) rotate(-1.5deg);}}
+
+  /* ---------- Mascota kawaii ---------- */
+  .mascota{width:200px;max-width:60%;margin:6px auto 0;display:block;animation:meceo 4s ease-in-out infinite;}
+  .mascota .ala{transform-origin:center;animation:aletear 0.5s ease-in-out infinite alternate;}
+  @keyframes aletear{from{transform:rotate(-4deg);}to{transform:rotate(4deg);}}
+
+  .scroll-hint{margin-top:18px;font-size:1.05rem;color:var(--verde-prof);font-weight:600;}
+  .scroll-hint .flecha{display:block;font-size:1.8rem;animation:bota 1.4s ease-in-out infinite;}
+  @keyframes bota{50%{transform:translateY(10px);}}
+
+  /* ---------- SECCIÓN datos ---------- */
+  .seccion-titulo{
+    text-align:center;
+    font-size:clamp(1.8rem,6vw,2.8rem);
+    color:var(--verde-prof);
+    margin:40px 16px 8px;
+    -webkit-text-stroke:1.5px #fff;
+    paint-order:stroke fill;
+  }
+  .seccion-sub{text-align:center;font-size:1.1rem;color:var(--texto);margin-bottom:26px;opacity:.8;}
+
+  .tarjetas{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:26px;
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 20px 30px;
+  }
+  .card{
+    background:#fff;
+    border-radius:28px;
+    overflow:hidden;
+    box-shadow:0 12px 30px rgba(0,0,0,.10);
+    border:4px solid #fff;
+    transition:transform .25s ease, box-shadow .25s ease;
+    display:flex;flex-direction:column;
+  }
+  .card:hover{transform:translateY(-10px) rotate(-1deg);box-shadow:0 22px 44px rgba(0,0,0,.18);}
+  .card .pic{position:relative;aspect-ratio:1/1.05;overflow:hidden;background:#eef;}
+  .card .pic img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;}
+  .card:hover .pic img{transform:scale(1.07);}
+  .card .emoji-badge{
+    position:absolute;top:12px;left:12px;
+    background:#fff;border-radius:50%;
+    width:54px;height:54px;display:grid;place-items:center;
+    font-size:1.7rem;box-shadow:0 4px 12px rgba(0,0,0,.18);
+  }
+  .card .cuerpo{padding:18px 20px 22px;text-align:center;}
+  .card h3{font-size:1.5rem;margin-bottom:6px;}
+  .card p{font-size:1.05rem;color:#444;}
+
+  /* colores por tarjeta */
+  .c-azul{border-color:var(--azul);}      .c-azul h3{color:var(--azul-prof);}
+  .c-verde{border-color:var(--verde);}    .c-verde h3{color:var(--verde-prof);}
+  .c-amarillo{border-color:var(--amarillo);} .c-amarillo h3{color:#c79400;}
+  .c-rosa{border-color:var(--rosa);}      .c-rosa h3{color:#d63384;}
+  .c-morado{border-color:var(--morado);}  .c-morado h3{color:#7b2fd6;}
+  .c-turq{border-color:var(--turquesa);}  .c-turq h3{color:#0098a0;}
+
+  /* ---------- ¿Sabías que? ---------- */
+  .sabias{
+    max-width:760px;margin:30px auto;padding:0 20px;
+  }
+  .sabias .burbuja{
+    background:linear-gradient(135deg,#fff6d8,#ffe9c2);
+    border:4px dashed var(--amarillo);
+    border-radius:26px;
+    padding:22px 26px;
+    margin-bottom:18px;
+    font-size:1.15rem;
+    display:flex;gap:14px;align-items:flex-start;
+    box-shadow:0 8px 20px rgba(255,210,63,.25);
+  }
+  .sabias .burbuja .ico{font-size:2rem;flex-shrink:0;}
+  .sabias .burbuja b{color:var(--rojo);}
+
+  /* ---------- Galería colores ---------- */
+  .colores-box{max-width:780px;margin:20px auto 10px;padding:0 20px;text-align:center;}
+  .colores-box img{width:100%;border-radius:26px;border:6px solid #fff;box-shadow:0 14px 34px rgba(0,0,0,.15);}
+  .colores-box p{margin-top:14px;font-size:1.1rem;color:var(--morado);font-weight:600;}
+
+  /* ---------- Galería extra ---------- */
+  .galeria{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+    gap:14px;max-width:1000px;margin:0 auto;padding:10px 20px 30px;
+  }
+  .galeria img{
+    width:100%;aspect-ratio:1/1.3;object-fit:cover;
+    border-radius:18px;border:4px solid #fff;
+    box-shadow:0 8px 18px rgba(0,0,0,.12);
+    transition:transform .25s;
+    cursor:pointer;
+  }
+  .galeria img:hover{transform:scale(1.05) rotate(1deg);}
+
+  /* ---------- Mini quiz ---------- */
+  .quiz{max-width:680px;margin:30px auto;padding:0 20px;}
+  .quiz-card{
+    background:#fff;border-radius:26px;padding:26px;
+    box-shadow:0 12px 30px rgba(0,0,0,.10);
+    border:4px solid var(--morado);
+    text-align:center;
+  }
+  .quiz-card h3{font-size:1.6rem;color:var(--morado);margin-bottom:16px;}
+  .quiz-card .opciones{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+  .quiz-card button{
+    font-family:'Baloo 2',cursive;font-weight:700;font-size:1.15rem;
+    padding:12px 24px;border:none;border-radius:999px;cursor:pointer;
+    background:linear-gradient(90deg,var(--turquesa),var(--azul));
+    color:#fff;box-shadow:0 6px 0 rgba(21,101,192,.3);
+    transition:transform .1s;
+  }
+  .quiz-card button:active{transform:translateY(4px);box-shadow:0 2px 0 rgba(21,101,192,.3);}
+  .quiz-card .resultado{margin-top:18px;font-size:1.3rem;font-weight:700;min-height:30px;}
+  .ok{color:var(--verde-prof);}
+  .no{color:var(--rojo);}
+
+  /* ---------- Footer ---------- */
+  footer{
+    text-align:center;padding:40px 20px 60px;margin-top:30px;
+    background:linear-gradient(180deg,transparent, #d8f3ff);
+  }
+  footer .corazon{font-size:2.2rem;animation:latir 1.2s ease-in-out infinite;display:inline-block;}
+  @keyframes latir{50%{transform:scale(1.25);}}
+  footer p{font-size:1.15rem;color:var(--azul-prof);font-weight:600;margin-top:8px;}
+  footer .firma{margin-top:10px;font-size:1rem;color:#777;}
+
+  /* ---------- Libélula que vuela por la pantalla ---------- */
+  .voladora{
+    position:fixed;bottom:30px;left:-80px;font-size:2.6rem;z-index:5;
+    animation:cruzar 16s linear infinite;pointer-events:none;
+  }
+  @keyframes cruzar{
+    0%{left:-80px;bottom:20%;transform:rotate(8deg);}
+    25%{bottom:60%;}
+    50%{bottom:30%;transform:rotate(-8deg);}
+    75%{bottom:70%;}
+    100%{left:110%;bottom:40%;transform:rotate(8deg);}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;}
+  }
+  /* aparición al hacer scroll */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .6s, transform .6s;}
+  .reveal.visible{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+
+<div class="deco" id="deco"></div>
+<div class="voladora">🐉</div>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="estrella">⭐</div>
+    <div class="sub">✨ Mi exposición sobre la ✨</div>
+    <h1>LIBÉLULA</h1>
+
+    <!-- Mascota kawaii dibujada -->
+    <svg class="mascota" viewBox="0 0 200 200" role="img" aria-label="Libélula kawaii sonriente">
+      <!-- alas -->
+      <g class="ala">
+        <ellipse cx="60" cy="78" rx="46" ry="20" fill="#bdeaff" stroke="#7fd4ff" stroke-width="3" opacity=".9" transform="rotate(-18 60 78)"/>
+        <ellipse cx="140" cy="78" rx="46" ry="20" fill="#bdeaff" stroke="#7fd4ff" stroke-width="3" opacity=".9" transform="rotate(18 140 78)"/>
+        <ellipse cx="64" cy="104" rx="40" ry="16" fill="#d6f7e0" stroke="#8fe3ab" stroke-width="3" opacity=".9" transform="rotate(-10 64 104)"/>
+        <ellipse cx="136" cy="104" rx="40" ry="16" fill="#d6f7e0" stroke="#8fe3ab" stroke-width="3" opacity=".9" transform="rotate(10 136 104)"/>
+      </g>
+      <!-- cuerpo / colita -->
+      <rect x="91" y="92" width="18" height="86" rx="9" fill="#5ec8e8" stroke="#2196f3" stroke-width="3"/>
+      <line x1="100" y1="116" x2="100" y2="116" stroke="#2196f3" stroke-width="3"/>
+      <rect x="92" y="116" width="16" height="3" fill="#2196f3" opacity=".4"/>
+      <rect x="92" y="134" width="16" height="3" fill="#2196f3" opacity=".4"/>
+      <rect x="92" y="152" width="16" height="3" fill="#2196f3" opacity=".4"/>
+      <!-- cabeza -->
+      <circle cx="100" cy="74" r="34" fill="#7ad6f0" stroke="#2196f3" stroke-width="3"/>
+      <!-- ojos grandes kawaii -->
+      <circle cx="86" cy="70" r="13" fill="#2a2a4a"/>
+      <circle cx="114" cy="70" r="13" fill="#2a2a4a"/>
+      <circle cx="90" cy="66" r="4.5" fill="#fff"/>
+      <circle cx="118" cy="66" r="4.5" fill="#fff"/>
+      <circle cx="83" cy="73" r="2" fill="#fff" opacity=".8"/>
+      <circle cx="111" cy="73" r="2" fill="#fff" opacity=".8"/>
+      <!-- mejillas sonrojadas -->
+      <circle cx="75" cy="84" r="6" fill="#ff9ec4" opacity=".75"/>
+      <circle cx="125" cy="84" r="6" fill="#ff9ec4" opacity=".75"/>
+      <!-- boquita feliz -->
+      <path d="M93 86 Q100 94 107 86" fill="none" stroke="#2a2a4a" stroke-width="3" stroke-linecap="round"/>
+      <!-- antenitas -->
+      <path d="M90 44 Q86 34 80 32" fill="none" stroke="#2196f3" stroke-width="3" stroke-linecap="round"/>
+      <path d="M110 44 Q114 34 120 32" fill="none" stroke="#2196f3" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="80" cy="31" r="3.5" fill="#ff9ec4"/>
+      <circle cx="120" cy="31" r="3.5" fill="#ff9ec4"/>
+    </svg>
+
+    <img class="hero-foto" src="img/portada-libelula.png" alt="Una libélula azul brillante">
+    <div class="gael">🦸 Por Gael, 3 años 🦸</div>
+    <div class="scroll-hint">¡Desliza para conocerla!<span class="flecha">👇</span></div>
+  </header>
+
+  <!-- 6 DATOS -->
+  <h2 class="seccion-titulo reveal">🔎 6 cosas geniales de la libélula</h2>
+  <p class="seccion-sub reveal">Toca cada tarjeta y descúbrelas 💫</p>
+
+  <section class="tarjetas">
+    <article class="card c-azul reveal">
+      <div class="pic"><span class="emoji-badge">🐉</span><img src="img/portada-libelula.png" alt="Libélula"></div>
+      <div class="cuerpo"><h3>Es una LIBÉLULA</h3><p>Un insecto muy colorido que vive cerca del agua. ¡Es súper antigua!</p></div>
+    </article>
+
+    <article class="card c-turq reveal">
+      <div class="pic"><span class="emoji-badge">👀</span><img src="img/ojos-grandes.png" alt="Ojos grandes"></div>
+      <div class="cuerpo"><h3>Ojos GRANDES</h3><p>Tiene dos ojos enormes y puede ver casi para todos lados. ¡Nada se le escapa!</p></div>
+    </article>
+
+    <article class="card c-verde reveal">
+      <div class="pic"><span class="emoji-badge">🦋</span><img src="img/cuatro-alas.png" alt="Cuatro alas"></div>
+      <div class="cuerpo"><h3>Cuatro ALAS</h3><p>Tiene 4 alitas transparentes. Las mueve todas a la vez para volar muy bien.</p></div>
+    </article>
+
+    <article class="card c-amarillo reveal">
+      <div class="pic"><span class="emoji-badge">💨</span><img src="img/vuela-rapido.png" alt="Vuela rápido"></div>
+      <div class="cuerpo"><h3>Vuela RÁPIDO</h3><p>¡Es muy veloz! Puede volar de lado y hasta hacia atrás, como un helicóptero.</p></div>
+    </article>
+
+    <article class="card c-rosa reveal">
+      <div class="pic"><span class="emoji-badge">🦟</span><img src="img/come-insectos.png" alt="Come insectos"></div>
+      <div class="cuerpo"><h3>Come INSECTOS</h3><p>Atrapa mosquitos y bichitos volando. ¡Nos ayuda mucho!</p></div>
+    </article>
+
+    <article class="card c-morado reveal">
+      <div class="pic"><span class="emoji-badge">💧</span><img src="img/vive-humedad.png" alt="Vive en el agua"></div>
+      <div class="cuerpo"><h3>Vive en el AGUA</h3><p>Nace en charcos y lagunas. Le encantan los lugares con plantitas y agua.</p></div>
+    </article>
+  </section>
+
+  <!-- SABÍAS QUE -->
+  <h2 class="seccion-titulo reveal">🌟 ¿Sabías que...?</h2>
+  <div class="sabias">
+    <div class="burbuja reveal"><span class="ico">👑</span><div>Hace muchííísimo tiempo existían libélulas <b>gigantes</b>, ¡tan grandes como un gato!</div></div>
+    <div class="burbuja reveal"><span class="ico">🌈</span><div>Las hay de muchos colores: <b>azules, verdes, amarillas y rojas</b>.</div></div>
+    <div class="burbuja reveal"><span class="ico">👁️</span><div>Sus ojos tienen <b>miles de mini-ojitos</b> juntitos para ver muy bien.</div></div>
+    <div class="burbuja reveal"><span class="ico">💖</span><div>Las libélulas son <b>amigas</b>: se comen a los mosquitos que nos pican.</div></div>
+  </div>
+
+  <!-- COLORES -->
+  <h2 class="seccion-titulo reveal">🎨 ¡Libélulas de colores!</h2>
+  <div class="colores-box reveal">
+    <img src="img/colores.png" alt="Libélulas azul, verde, amarilla y roja">
+    <p>Azul 💙 &nbsp; Verde 💚 &nbsp; Amarilla 💛 &nbsp; Roja ❤️</p>
+  </div>
+
+  <!-- GALERÍA -->
+  <h2 class="seccion-titulo reveal">📸 Más fotos lindas</h2>
+  <p class="seccion-sub reveal">¡Mira qué bonita es!</p>
+  <div class="galeria">
+    <img src="img/libelula-trigo.png" alt="Libélula azul en el trigo" class="reveal">
+    <img src="img/ojos-marron.png" alt="Ojos grandes de la libélula" class="reveal">
+    <img src="img/cuatro-alas-flores.png" alt="Libélula con flores" class="reveal">
+    <img src="img/vuela-verde.png" alt="Libélula volando" class="reveal">
+    <img src="img/come-insectos-cielo.png" alt="Libélula comiendo en el cielo" class="reveal">
+    <img src="img/cuatro-alas-rojas.png" alt="Libélula con flores rojas" class="reveal">
+    <img src="img/come-insectos-cielo2.png" alt="Libélula cazando" class="reveal">
+    <img src="img/seis-datos.png" alt="Los seis datos de la libélula" class="reveal">
+  </div>
+
+  <!-- QUIZ -->
+  <h2 class="seccion-titulo reveal">🎮 ¡Juego rápido!</h2>
+  <div class="quiz reveal">
+    <div class="quiz-card">
+      <h3>¿Cuántas alas tiene la libélula?</h3>
+      <div class="opciones">
+        <button onclick="responder(this,false)">2 alas</button>
+        <button onclick="responder(this,true)">4 alas</button>
+        <button onclick="responder(this,false)">6 alas</button>
+      </div>
+      <div class="resultado" id="res"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="corazon">💙</span>
+    <p>¡Gracias por conocer a la libélula!</p>
+    <p class="firma">Una exposición con mucho amor de <b>Gael</b> 🐉<br>y de su papá 👨‍👦</p>
+  </footer>
+
+</div>
+
+<script>
+  // Decoración flotante
+  const emojis = ['🐉','🌿','💧','☁️','🌸','🍃','⭐','🦋','💙','🌼'];
+  const deco = document.getElementById('deco');
+  for(let i=0;i<16;i++){
+    const s=document.createElement('span');
+    s.textContent=emojis[i%emojis.length];
+    s.style.left=(Math.random()*96)+'%';
+    s.style.top=(Math.random()*100)+'%';
+    s.style.fontSize=(1.4+Math.random()*1.8)+'rem';
+    s.style.animationDuration=(4+Math.random()*5)+'s';
+    s.style.animationDelay=(Math.random()*4)+'s';
+    deco.appendChild(s);
+  }
+
+  // Reveal al hacer scroll
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Quiz
+  function responder(btn,correcto){
+    const res=document.getElementById('res');
+    if(correcto){
+      res.textContent='🎉 ¡Muy bien! ¡Tiene 4 alas!';
+      res.className='resultado ok';
+      lluviaConfeti();
+    }else{
+      res.textContent='🤔 ¡Casi! Inténtalo otra vez 💪';
+      res.className='resultado no';
+    }
+  }
+
+  // Confeti simple de emojis
+  function lluviaConfeti(){
+    const fiesta=['🎉','⭐','💙','🐉','🌟','🦋','💚'];
+    for(let i=0;i<24;i++){
+      const c=document.createElement('div');
+      c.textContent=fiesta[Math.floor(Math.random()*fiesta.length)];
+      c.style.cssText=`position:fixed;top:-40px;left:${Math.random()*100}%;font-size:${1.4+Math.random()*1.4}rem;z-index:9999;pointer-events:none;transition:transform 2.4s ease-in, opacity 2.4s;`;
+      document.body.appendChild(c);
+      requestAnimationFrame(()=>{
+        c.style.transform=`translateY(110vh) rotate(${Math.random()*720-360}deg)`;
+        c.style.opacity='0';
+      });
+      setTimeout(()=>c.remove(),2600);
+    }
+  }
+</script>
+</body>
+</html>
