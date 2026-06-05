@@ -449,17 +449,21 @@
   footer .cierre{margin-top:18px;font-size:1.25rem;font-weight:700;color:var(--morado);font-family:'Baloo 2',cursive;}
   footer .cierre b{color:var(--rojo);}
 
-  /* ---------- Libélula que vuela por la pantalla ---------- */
-  .voladora{
-    position:fixed;bottom:30px;left:-80px;font-size:2.6rem;z-index:5;
-    animation:cruzar 16s linear infinite;pointer-events:none;
+  /* ---------- Libélulas que vuelan por la pantalla ---------- */
+  .libe-fly{
+    position:fixed;left:-90px;z-index:5;width:46px;height:auto;
+    opacity:.55;pointer-events:none;will-change:transform,left,top;
+    animation:cruzar linear infinite;
   }
+  .libe-fly svg{width:100%;height:auto;display:block;filter:drop-shadow(0 3px 4px rgba(0,0,0,.08));}
+  .libe-fly .alas{transform-box:fill-box;transform-origin:center;animation:aletea .28s ease-in-out infinite alternate;}
+  @keyframes aletea{from{transform:scaleY(.78);}to{transform:scaleY(1.06);}}
   @keyframes cruzar{
-    0%{left:-80px;bottom:20%;transform:rotate(8deg);}
-    25%{bottom:60%;}
-    50%{bottom:30%;transform:rotate(-8deg);}
-    75%{bottom:70%;}
-    100%{left:110%;bottom:40%;transform:rotate(8deg);}
+    0%{left:-90px;top:18%;transform:rotate(6deg);}
+    25%{top:42%;transform:rotate(-4deg);}
+    50%{top:28%;transform:rotate(6deg);}
+    75%{top:50%;transform:rotate(-5deg);}
+    100%{left:108%;top:36%;transform:rotate(6deg);}
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -473,7 +477,7 @@
 <body>
 
 <div class="deco" id="deco"></div>
-<div class="voladora">🐉</div>
+<div class="flyers" id="flyers"></div>
 
 <div class="wrap">
 
@@ -769,10 +773,10 @@
     setTimeout(()=>{ msg.textContent=''; }, 4000);
   }
 
-  // Decoración flotante
-  const emojis = ['🐉','🌿','💧','☁️','🌸','🍃','⭐','🦋','💙','🌼'];
+  // Decoración flotante (sin el dragón 🐉; usamos libélulas SVG para volar)
+  const emojis = ['🌿','💧','☁️','🌸','🍃','⭐','🦋','💙','🌼'];
   const deco = document.getElementById('deco');
-  for(let i=0;i<16;i++){
+  for(let i=0;i<14;i++){
     const s=document.createElement('span');
     s.textContent=emojis[i%emojis.length];
     s.style.left=(Math.random()*96)+'%';
@@ -782,6 +786,38 @@
     s.style.animationDelay=(Math.random()*4)+'s';
     deco.appendChild(s);
   }
+
+  // Libélulas que cruzan la pantalla (SVG, sutiles)
+  function svgLibelula(){
+    return `<svg class="libe-fly-svg" viewBox="0 0 64 36" xmlns="http://www.w3.org/2000/svg">
+      <g class="alas" opacity=".85">
+        <ellipse cx="44" cy="9"  rx="13" ry="4.5" fill="#cdeffa" stroke="#9fdcef" stroke-width="1" transform="rotate(-16 37 18)"/>
+        <ellipse cx="30" cy="9"  rx="13" ry="4.5" fill="#d8f7e6" stroke="#a6e6c2" stroke-width="1" transform="rotate(16 37 18)"/>
+        <ellipse cx="44" cy="27" rx="12" ry="4.2" fill="#cdeffa" stroke="#9fdcef" stroke-width="1" transform="rotate(16 37 18)"/>
+        <ellipse cx="30" cy="27" rx="12" ry="4.2" fill="#d8f7e6" stroke="#a6e6c2" stroke-width="1" transform="rotate(-16 37 18)"/>
+      </g>
+      <rect x="6" y="16.4" width="32" height="3.4" rx="1.7" fill="#39b0d4"/>
+      <circle cx="40" cy="18" r="4" fill="#2196f3"/>
+      <circle cx="47" cy="18" r="4.4" fill="#5ec8e8"/>
+      <circle cx="48.4" cy="16.4" r="1.5" fill="#2a2a4a"/>
+      <circle cx="48.4" cy="19.6" r="1.5" fill="#2a2a4a"/>
+    </svg>`;
+  }
+  (function flyers(){
+    const cont = document.getElementById('flyers');
+    if(!cont) return;
+    const N = window.innerWidth < 600 ? 2 : 3;   // pocas, para no marear
+    for(let i=0;i<N;i++){
+      const f = document.createElement('div');
+      f.className = 'libe-fly';
+      f.innerHTML = svgLibelula();
+      f.style.width = (38 + i*8) + 'px';
+      f.style.opacity = (0.45 + Math.random()*0.2).toFixed(2);
+      f.style.animationDuration = (24 + i*7 + Math.random()*6) + 's';
+      f.style.animationDelay = (i * -9) + 's';   // empiezan en distintos puntos
+      cont.appendChild(f);
+    }
+  })();
 
   // Reveal al hacer scroll
   const io=new IntersectionObserver((entries)=>{
