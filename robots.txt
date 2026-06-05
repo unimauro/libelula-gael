@@ -1,0 +1,5 @@
+# Operación Libélula — robots
+User-agent: *
+Allow: /
+
+Sitemap: https://unimauro.github.io/libelula/sitemap.xml

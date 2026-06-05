@@ -13,8 +13,13 @@
   gtag('config', 'G-DK72Q3SL9Y');
 </script>
 
-<title>La Libélula de Gael 💙</title>
-<meta name="description" content="La libélula explicada para niños — la exposición de Gael (3 años). ¡Datos curiosos, fotos lindas y mucho color!">
+<title>La Libélula para niños — Exposición de Gael | Datos, fotos y origami</title>
+<meta name="description" content="Aprende sobre la libélula de forma divertida: sus ojos grandes, cuatro alas, cómo vuela y dónde vive. Exposición infantil con fotos, video de origami y galería para compartir.">
+<meta name="keywords" content="libélula, libelula para niños, datos de la libélula, insectos para niños, exposición escolar, origami libélula, libélula explicada, dragonfly niños">
+<meta name="author" content="Gael & familia">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://unimauro.github.io/libelula/">
+<meta name="language" content="es">
 
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -35,6 +40,32 @@
 <meta name="twitter:title" content="La Libélula de Gael 💙">
 <meta name="twitter:description" content="Una exposición muy tierna sobre la libélula, para niños. 💙">
 <meta name="twitter:image" content="https://unimauro.github.io/libelula/og-image.jpg">
+
+<!-- Datos estructurados para buscadores (JSON-LD) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "La Libélula de Gael",
+  "url": "https://unimauro.github.io/libelula/",
+  "inLanguage": "es",
+  "description": "Exposición infantil sobre la libélula: datos curiosos, fotos, video de origami y galería comunitaria.",
+  "about": { "@type": "Thing", "name": "Libélula (Odonata)" },
+  "audience": { "@type": "EducationalAudience", "educationalRole": "student" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "La Libélula para niños",
+  "educationalLevel": "Preescolar",
+  "learningResourceType": "Exposición educativa",
+  "teaches": "Características de la libélula: ojos grandes, cuatro alas, vuelo, alimentación y hábitat.",
+  "inLanguage": "es",
+  "url": "https://unimauro.github.io/libelula/"
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -117,6 +148,22 @@
   }
   /* que el título no quede tapado por la barra al saltar */
   .seccion-titulo[id]{scroll-margin-top:74px;}
+
+  /* Libélula SVG como ícono */
+  .df{display:inline-block;}
+  .marca .df{height:1.5em;width:auto;vertical-align:-0.45em;margin-right:2px;}
+  .emoji-badge .df{width:36px;height:36px;}
+
+  /* Menú de compartir foto (popup visible) */
+  .share-pop{position:fixed;inset:0;z-index:70;display:none;align-items:center;justify-content:center;
+    background:rgba(20,10,40,.6);backdrop-filter:blur(3px);padding:20px;}
+  .share-pop.abierto{display:flex;}
+  .share-pop .caja{background:#fff;border-radius:24px;padding:24px;max-width:340px;width:100%;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.4);}
+  .share-pop h3{font-family:'Baloo 2',cursive;color:var(--azul-prof);font-size:1.4rem;margin-bottom:16px;}
+  .share-pop .ops{display:flex;flex-direction:column;gap:10px;}
+  .share-pop a,.share-pop button{font-family:'Baloo 2',cursive;font-weight:700;font-size:1.05rem;color:#fff;
+    text-decoration:none;border:none;border-radius:999px;padding:13px 18px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;}
+  .share-pop .cerrar-pop{background:#eee;color:#555;margin-top:6px;}
 
   /* botón "subir" flotante */
   .subir{
@@ -334,6 +381,8 @@
   .b-tg{background:#2aabee;}
   .b-copy{background:linear-gradient(90deg,var(--morado),var(--rosa));}
   .copiado-msg{margin-top:12px;font-size:1.05rem;color:var(--verde-prof);font-weight:700;min-height:24px;}
+  .copiado-anim{background:linear-gradient(90deg,#34c759,#28a745) !important;animation:pop-copia .3s ease;}
+  @keyframes pop-copia{0%{transform:scale(.92);}60%{transform:scale(1.08);}100%{transform:scale(1);}}
 
   /* ---------- QR ---------- */
   .qr-box{
@@ -484,7 +533,7 @@
   <!-- MENÚ DE NAVEGACIÓN -->
   <nav class="navbar" aria-label="Menú de secciones">
     <div class="nav-inner">
-      <a href="#inicio" class="marca">🦋 Libélula</a>
+      <a href="#inicio" class="marca"><svg class="df" viewBox="0 0 40 44" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><ellipse cx="11" cy="15" rx="9" ry="3.8" fill="#cdeffa" stroke="#9fdcef" stroke-width="1.2" transform="rotate(-22 20 18)"/><ellipse cx="29" cy="15" rx="9" ry="3.8" fill="#d8f7e6" stroke="#a6e6c2" stroke-width="1.2" transform="rotate(22 20 18)"/><ellipse cx="12" cy="23" rx="8" ry="3.4" fill="#cdeffa" stroke="#9fdcef" stroke-width="1.2" transform="rotate(22 20 18)"/><ellipse cx="28" cy="23" rx="8" ry="3.4" fill="#d8f7e6" stroke="#a6e6c2" stroke-width="1.2" transform="rotate(-22 20 18)"/><rect x="18" y="14" width="4" height="24" rx="2" fill="#39b0d4"/><circle cx="20" cy="11" r="4.5" fill="#5ec8e8"/><circle cx="18.2" cy="10" r="1.4" fill="#2a2a4a"/><circle cx="21.8" cy="10" r="1.4" fill="#2a2a4a"/></svg> Libélula</a>
       <a href="#datos" class="nav-link">🔎 Datos</a>
       <a href="#sabias" class="nav-link">🌟 ¿Sabías?</a>
       <a href="#colores" class="nav-link">🎨 Colores</a>
@@ -550,7 +599,7 @@
 
   <section class="tarjetas">
     <article class="card c-azul reveal">
-      <div class="pic"><span class="emoji-badge">🦋</span><img src="img/portada-libelula.webp" alt="Libélula" loading="lazy" decoding="async"></div>
+      <div class="pic"><span class="emoji-badge"><svg class="df" viewBox="0 0 40 44" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><ellipse cx="11" cy="15" rx="9" ry="3.8" fill="#cdeffa" stroke="#9fdcef" stroke-width="1.2" transform="rotate(-22 20 18)"/><ellipse cx="29" cy="15" rx="9" ry="3.8" fill="#d8f7e6" stroke="#a6e6c2" stroke-width="1.2" transform="rotate(22 20 18)"/><ellipse cx="12" cy="23" rx="8" ry="3.4" fill="#cdeffa" stroke="#9fdcef" stroke-width="1.2" transform="rotate(22 20 18)"/><ellipse cx="28" cy="23" rx="8" ry="3.4" fill="#d8f7e6" stroke="#a6e6c2" stroke-width="1.2" transform="rotate(-22 20 18)"/><rect x="18" y="14" width="4" height="24" rx="2" fill="#39b0d4"/><circle cx="20" cy="11" r="4.5" fill="#5ec8e8"/><circle cx="18.2" cy="10" r="1.4" fill="#2a2a4a"/><circle cx="21.8" cy="10" r="1.4" fill="#2a2a4a"/></svg></span><img src="img/portada-libelula.webp" alt="Libélula" loading="lazy" decoding="async"></div>
       <div class="cuerpo"><h3>Es una LIBÉLULA</h3><p>Un insecto muy colorido que vive cerca del agua. ¡Es súper antigua!</p></div>
     </article>
 
@@ -560,7 +609,7 @@
     </article>
 
     <article class="card c-verde reveal">
-      <div class="pic"><span class="emoji-badge">🦋</span><img src="img/cuatro-alas.webp" alt="Cuatro alas" loading="lazy" decoding="async"></div>
+      <div class="pic"><span class="emoji-badge"><svg class="df" viewBox="0 0 40 44" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><ellipse cx="11" cy="15" rx="9" ry="3.8" fill="#cdeffa" stroke="#9fdcef" stroke-width="1.2" transform="rotate(-22 20 18)"/><ellipse cx="29" cy="15" rx="9" ry="3.8" fill="#d8f7e6" stroke="#a6e6c2" stroke-width="1.2" transform="rotate(22 20 18)"/><ellipse cx="12" cy="23" rx="8" ry="3.4" fill="#cdeffa" stroke="#9fdcef" stroke-width="1.2" transform="rotate(22 20 18)"/><ellipse cx="28" cy="23" rx="8" ry="3.4" fill="#d8f7e6" stroke="#a6e6c2" stroke-width="1.2" transform="rotate(-22 20 18)"/><rect x="18" y="14" width="4" height="24" rx="2" fill="#39b0d4"/><circle cx="20" cy="11" r="4.5" fill="#5ec8e8"/><circle cx="18.2" cy="10" r="1.4" fill="#2a2a4a"/><circle cx="21.8" cy="10" r="1.4" fill="#2a2a4a"/></svg></span><img src="img/cuatro-alas.webp" alt="Cuatro alas" loading="lazy" decoding="async"></div>
       <div class="cuerpo"><h3>Cuatro ALAS</h3><p>Tiene 4 alitas transparentes. Las mueve todas a la vez para volar muy bien.</p></div>
     </article>
 
@@ -626,7 +675,7 @@
 
   <!-- GALERÍA COMUNITARIA -->
   <h2 id="galeria" class="seccion-titulo reveal">📤 ¡Sube tu foto!</h2>
-  <p class="seccion-sub reveal">¿Ya hiciste tu origami? 🎎 ¿Viste una libélula? 🦋 ¡Súbela y compártela con todos! 💞</p>
+  <p class="seccion-sub reveal">¿Ya hiciste tu origami? 🎎 ¿Viste una libélula? 💙 ¡Súbela y compártela con todos! 💞</p>
   <div class="galeria-comu reveal">
 
     <!-- Formulario de subida -->
@@ -649,13 +698,27 @@
       <div class="botones-redes">
         <a class="b-wa" id="gal-wa" target="_blank" rel="noopener">💬 Compartir galería</a>
         <a class="b-fb" id="gal-fb" target="_blank" rel="noopener">👍 Facebook</a>
-        <button class="b-copy" onclick="compartirGaleria()">🔗 Compartir</button>
+        <button class="b-copy" onclick="compartirGaleria(this)">🔗 Compartir</button>
       </div>
     </div>
 
     <!-- Cuadrícula de fotos -->
     <div class="grid-fotos" id="gridFotos"></div>
     <div class="galeria-vacia" id="galeriaVacia"></div>
+  </div>
+
+  <!-- Popup compartir foto -->
+  <div class="share-pop" id="sharePop" onclick="if(event.target===this)cerrarSharePop()">
+    <div class="caja">
+      <h3>🔗 Compartir esta foto</h3>
+      <div class="ops">
+        <a id="sp-wa" class="b-wa" target="_blank" rel="noopener">💬 WhatsApp</a>
+        <a id="sp-fb" class="b-fb" target="_blank" rel="noopener">👍 Facebook</a>
+        <a id="sp-tg" class="b-tg" target="_blank" rel="noopener">✈️ Telegram</a>
+        <button id="sp-copy" class="b-copy">📋 Copiar enlace</button>
+        <button class="cerrar-pop" onclick="cerrarSharePop()">Cerrar</button>
+      </div>
+    </div>
   </div>
 
   <!-- Lightbox -->
@@ -692,13 +755,13 @@
   <!-- COMPARTIR -->
   <h2 id="compartir" class="seccion-titulo reveal">💌 ¡Comparte la libélula!</h2>
   <div class="compartir reveal">
-    <p>Envíasela a tus amiguitos y a la familia 🦋💙</p>
+    <p>Envíasela a tus amiguitos y a la familia 💙</p>
     <div class="botones-redes">
       <a class="b-wa" id="sh-wa" target="_blank" rel="noopener" aria-label="Compartir por WhatsApp">💬 WhatsApp</a>
       <a class="b-fb" id="sh-fb" target="_blank" rel="noopener" aria-label="Compartir en Facebook">👍 Facebook</a>
       <a class="b-x" id="sh-x" target="_blank" rel="noopener" aria-label="Compartir en X">✖️ X</a>
       <a class="b-tg" id="sh-tg" target="_blank" rel="noopener" aria-label="Compartir en Telegram">✈️ Telegram</a>
-      <button class="b-copy" onclick="compartirNativo()" aria-label="Compartir o copiar enlace">🔗 Compartir</button>
+      <button class="b-copy" onclick="compartirNativo(this)" aria-label="Compartir o copiar enlace">🔗 Compartir</button>
     </div>
     <div class="copiado-msg" id="copiado"></div>
 
@@ -715,8 +778,8 @@
   <footer>
     <span class="corazon">💙</span>
     <p>¡Gracias por conocer a la libélula!</p>
-    <p class="firma">Una exposición con mucho amor de <b>Gael</b> 🦋<br>y de todos los que lo aman 💞</p>
-    <p class="cierre">…Y esta fue nuestra <b>Operación Libélula</b> 🦋✨</p>
+    <p class="firma">Una exposición con mucho amor de <b>Gael</b> 💙<br>y de todos los que lo aman 💞</p>
+    <p class="cierre">…Y esta fue nuestra <b>Operación Libélula</b> ✨</p>
   </footer>
 
   <button class="subir" id="btnSubir" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">⬆️</button>
@@ -745,7 +808,7 @@
 
   // ---- Compartir en redes ----
   const URL_PAGINA = 'https://unimauro.github.io/libelula/';
-  const TEXTO_SHARE = '🦋 Mira la exposición de la Libélula de Gael, ¡es muy linda! 💙';
+  const TEXTO_SHARE = '💙 Mira la exposición de la Libélula de Gael, ¡es muy linda! 💙';
   (function configurarRedes(){
     const u = encodeURIComponent(URL_PAGINA);
     const t = encodeURIComponent(TEXTO_SHARE);
@@ -755,26 +818,23 @@
     document.getElementById('sh-tg').href = `https://t.me/share/url?url=${u}&text=${t}`;
   })();
 
-  // Botón "Compartir": usa el menú nativo del celular si existe, si no copia el enlace
-  async function compartirNativo(){
-    const msg = document.getElementById('copiado');
-    if(navigator.share){
-      try{
-        await navigator.share({title:'La Libélula de Gael', text:TEXTO_SHARE, url:URL_PAGINA});
-        return;
-      }catch(e){ /* el usuario canceló */ return; }
-    }
-    try{
-      await navigator.clipboard.writeText(URL_PAGINA);
-      msg.textContent = '✅ ¡Enlace copiado! Ya lo puedes pegar 💜';
-    }catch(e){
-      msg.textContent = '🔗 ' + URL_PAGINA;
-    }
-    setTimeout(()=>{ msg.textContent=''; }, 4000);
+  // Copiar enlace con transición en el propio botón (✅ ¡Copiado!)
+  async function copiarEnlaceBtn(btn, url){
+    if(!btn.dataset.orig) btn.dataset.orig = btn.innerHTML;
+    try{ await navigator.clipboard.writeText(url); }
+    catch(e){ const ta=document.createElement('textarea'); ta.value=url; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(_){} ta.remove(); }
+    btn.innerHTML = '✅ ¡Copiado!';
+    btn.classList.add('copiado-anim');
+    clearTimeout(btn._t);
+    btn._t = setTimeout(()=>{ btn.innerHTML = btn.dataset.orig; btn.classList.remove('copiado-anim'); }, 1900);
   }
+  window.copiarEnlaceBtn = copiarEnlaceBtn;
+  // Botón "Compartir" de la página: copia el enlace con feedback visible
+  function compartirNativo(btn){ copiarEnlaceBtn(btn, URL_PAGINA); }
+  window.compartirNativo = compartirNativo;
 
-  // Decoración flotante (sin el dragón 🦋; usamos libélulas SVG para volar)
-  const emojis = ['🌿','💧','☁️','🌸','🍃','⭐','🦋','💙','🌼'];
+  // Decoración flotante (sin mariposas ni dragón; usamos libélulas SVG para volar)
+  const emojis = ['🌿','💧','☁️','🌸','🍃','⭐','🌷','💙','🌼'];
   const deco = document.getElementById('deco');
   for(let i=0;i<14;i++){
     const s=document.createElement('span');
@@ -849,7 +909,7 @@
 
   // Confeti simple de emojis
   function lluviaConfeti(){
-    const fiesta=['🎉','⭐','💙','🦋','🌟','🦋','💚'];
+    const fiesta=['🎉','⭐','💙','🌟','💚','🩵'];
     for(let i=0;i<24;i++){
       const c=document.createElement('div');
       c.textContent=fiesta[Math.floor(Math.random()*fiesta.length)];
@@ -867,7 +927,7 @@
   //  GALERÍA COMUNITARIA (Supabase)
   // ============================================================
   const URL_GALERIA = URL_PAGINA + '#galeria';
-  const TXT_GALERIA = '🦋📸 ¡Mira y comparte fotos de libélulas y origamis en la página de Gael!';
+  const TXT_GALERIA = '📸 ¡Mira y comparte fotos de libélulas y origamis en la página de Gael!';
 
   // Compartir la sección galería
   (function(){
@@ -876,11 +936,7 @@
     if(wa) wa.href=`https://wa.me/?text=${t}%20${u}`;
     if(fb) fb.href=`https://www.facebook.com/sharer/sharer.php?u=${u}`;
   })();
-  async function compartirGaleria(){
-    if(navigator.share){ try{ await navigator.share({title:'Galería de la Libélula',text:TXT_GALERIA,url:URL_GALERIA}); return;}catch(e){return;} }
-    try{ await navigator.clipboard.writeText(URL_GALERIA); alert('✅ ¡Enlace de la galería copiado!'); }
-    catch(e){ alert(URL_GALERIA); }
-  }
+  function compartirGaleria(btn){ copiarEnlaceBtn(btn, URL_GALERIA); }
   window.compartirGaleria = compartirGaleria;
 
   (function initGaleria(){
@@ -895,7 +951,7 @@
 
     // Sin configurar: mostrar "muy pronto" y salir
     if(!cfg.url || !cfg.anonKey){
-      vacia.innerHTML = '🦋 <b>¡Muy pronto!</b><br>Aquí podrás subir y compartir tus fotos. ✨';
+      vacia.innerHTML = '💙 <b>¡Muy pronto!</b><br>Aquí podrás subir y compartir tus fotos. ✨';
       btnSubir.disabled = true;
       drop.style.opacity = '.6'; drop.style.pointerEvents='none';
       return;
@@ -1040,10 +1096,10 @@
       try{ await s.rpc('reportar', {foto_id:f.id}); el.style.display='none'; alert('Gracias. Revisaremos esta foto. 🙏'); }catch(e){}
     }
 
-    // --- Compartir una foto (con miniatura real si el dispositivo lo permite) ---
+    // --- Compartir una foto ---
     async function compartirFoto(f){
       const texto = `${TXT_GALERIA}`;
-      // Intentar compartir el archivo (sale con miniatura a WhatsApp/FB en móvil)
+      // Móvil: si se puede compartir el archivo, sale con miniatura a WhatsApp/FB
       if(navigator.canShare){
         try{
           const r = await fetch(f.url); const blob = await r.blob();
@@ -1052,13 +1108,27 @@
             await navigator.share({files:[file], text:texto, title:'Foto de la Libélula'});
             return;
           }
-        }catch(e){ /* sigue al fallback */ }
+        }catch(e){ /* sigue al menú visible */ }
       }
-      if(navigator.share){ try{ await navigator.share({title:'Foto de la Libélula', text:texto, url:f.url}); return; }catch(e){return;} }
-      // Fallback escritorio: copiar enlace de la imagen
-      try{ await navigator.clipboard.writeText(f.url); alert('✅ ¡Enlace de la foto copiado! Pégalo en WhatsApp o Facebook y mostrará la imagen.'); }
-      catch(e){ window.open(f.url,'_blank'); }
+      // Escritorio (o sin compartir-archivo): menú visible con opciones
+      abrirSharePop(f.url, texto);
     }
+
+    // Popup de compartir (visible en cualquier dispositivo)
+    function abrirSharePop(imgUrl, texto){
+      const u = encodeURIComponent(imgUrl), t = encodeURIComponent(texto);
+      document.getElementById('sp-wa').href = `https://wa.me/?text=${t}%20${u}`;
+      document.getElementById('sp-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${u}`;
+      document.getElementById('sp-tg').href = `https://t.me/share/url?url=${u}&text=${t}`;
+      const copyBtn = document.getElementById('sp-copy');
+      copyBtn.textContent = '📋 Copiar enlace';
+      copyBtn.onclick = async ()=>{
+        try{ await navigator.clipboard.writeText(imgUrl); copyBtn.textContent = '✅ ¡Copiado!'; }
+        catch(e){ copyBtn.textContent = '🔗 ' + imgUrl.slice(0,24)+'…'; }
+      };
+      document.getElementById('sharePop').classList.add('abierto');
+    }
+    window.cerrarSharePop = ()=> document.getElementById('sharePop').classList.remove('abierto');
 
     // --- Lightbox ---
     let lbActual = null;
@@ -1103,7 +1173,7 @@
         const {data, error} = await s.from('fotos').select('*').order('created_at',{ascending:false}).limit(80);
         if(error) throw error;
         grid.innerHTML='';
-        if(!data || !data.length){ vacia.innerHTML='🦋 ¡Sé el primero en subir una foto! 📸'; return; }
+        if(!data || !data.length){ vacia.innerHTML='📸 ¡Sé el primero en subir una foto! 📸'; return; }
         vacia.textContent='';
         data.forEach(f=>{ const t=tarjeta(f); t.__foto=f; grid.appendChild(t); });
       }catch(e){
