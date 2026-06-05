@@ -333,6 +333,18 @@
   .b-copy{background:linear-gradient(90deg,var(--morado),var(--rosa));}
   .copiado-msg{margin-top:12px;font-size:1.05rem;color:var(--verde-prof);font-weight:700;min-height:24px;}
 
+  /* ---------- QR ---------- */
+  .qr-box{
+    max-width:340px;margin:26px auto 0;
+    background:#fff;border-radius:28px;padding:22px 22px 18px;
+    border:4px solid var(--turquesa);
+    box-shadow:0 12px 30px rgba(0,194,203,.22);
+  }
+  .qr-box h3{font-size:1.4rem;color:#0098a0;margin-bottom:4px;}
+  .qr-box p{font-size:.98rem;opacity:.8;margin-bottom:14px;}
+  .qr-box img{width:100%;max-width:240px;border-radius:14px;display:block;margin:0 auto;}
+  .qr-box .qr-pie{margin-top:12px;font-size:.92rem;color:var(--azul-prof);font-weight:600;word-break:break-all;}
+
   /* ---------- Footer ---------- */
   footer{
     text-align:center;padding:40px 20px 60px;margin-top:30px;
@@ -540,6 +552,14 @@
       <button class="b-copy" onclick="compartirNativo()" aria-label="Compartir o copiar enlace">🔗 Compartir</button>
     </div>
     <div class="copiado-msg" id="copiado"></div>
+
+    <!-- QR -->
+    <div class="qr-box">
+      <h3>📱 ¡Escanéame!</h3>
+      <p>Apunta tu celular al código</p>
+      <img src="qr-libelula.png" alt="Código QR de la página de la libélula" loading="lazy" decoding="async">
+      <div class="qr-pie">unimauro.github.io/libelula</div>
+    </div>
   </div>
 
   <!-- FOOTER -->
