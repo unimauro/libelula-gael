@@ -38,6 +38,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="config.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
   :root{
     --azul:#2196f3;
@@ -345,6 +347,94 @@
   .qr-box img{width:100%;max-width:240px;border-radius:14px;display:block;margin:0 auto;}
   .qr-box .qr-pie{margin-top:12px;font-size:.92rem;color:var(--azul-prof);font-weight:600;word-break:break-all;}
 
+  /* ---------- Galería comunitaria ---------- */
+  .galeria-comu{max-width:1000px;margin:0 auto;padding:0 20px 10px;scroll-margin-top:84px;}
+  .subir-card{
+    background:#fff;border-radius:28px;padding:24px;
+    border:4px dashed var(--rosa);
+    box-shadow:0 12px 30px rgba(255,126,179,.18);
+    max-width:520px;margin:0 auto 30px;text-align:center;
+  }
+  .subir-card .drop{
+    border:3px dashed #ffc2dc;border-radius:20px;padding:22px;
+    background:#fff6fb;cursor:pointer;transition:background .2s,border-color .2s;
+  }
+  .subir-card .drop:hover,.subir-card .drop.drag{background:#ffeef6;border-color:var(--rosa);}
+  .subir-card .drop .ico{font-size:2.6rem;display:block;margin-bottom:6px;}
+  .subir-card .drop b{color:#d63384;font-family:'Baloo 2',cursive;font-size:1.2rem;}
+  .subir-card .drop small{display:block;color:#999;margin-top:4px;}
+  .subir-card .previa{max-width:200px;border-radius:14px;margin:14px auto 0;display:none;}
+  .subir-card input[type=text],.subir-card textarea{
+    width:100%;margin-top:12px;padding:12px 14px;border-radius:14px;
+    border:2px solid #eee;font-family:'Fredoka',sans-serif;font-size:1rem;resize:none;
+  }
+  .subir-card input[type=text]:focus,.subir-card textarea:focus{outline:none;border-color:var(--turquesa);}
+  .btn-subir{
+    margin-top:16px;font-family:'Baloo 2',cursive;font-weight:700;font-size:1.15rem;
+    color:#fff;border:none;border-radius:999px;padding:14px 30px;cursor:pointer;
+    background:linear-gradient(90deg,var(--rosa),var(--morado));
+    box-shadow:0 6px 0 rgba(155,93,229,.35);transition:transform .12s,opacity .2s;
+  }
+  .btn-subir:active{transform:translateY(4px);box-shadow:0 2px 0 rgba(155,93,229,.35);}
+  .btn-subir:disabled{opacity:.5;cursor:not-allowed;}
+  .subir-estado{margin-top:12px;font-weight:600;min-height:22px;}
+
+  .grid-fotos{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    gap:18px;
+  }
+  .foto-item{
+    background:#fff;border-radius:22px;overflow:hidden;
+    box-shadow:0 10px 24px rgba(0,0,0,.10);border:4px solid #fff;
+    transition:transform .2s;display:flex;flex-direction:column;
+  }
+  .foto-item:hover{transform:translateY(-6px);}
+  .foto-item .ph{position:relative;aspect-ratio:1/1;overflow:hidden;background:#eef;cursor:zoom-in;}
+  .foto-item .ph img{width:100%;height:100%;object-fit:cover;transition:transform .3s;}
+  .foto-item .ph:hover img{transform:scale(1.06);}
+  .foto-item .info{padding:12px 14px;}
+  .foto-item .nom{font-family:'Baloo 2',cursive;font-weight:700;color:var(--azul-prof);font-size:1.05rem;}
+  .foto-item .msg{font-size:.95rem;color:#555;margin-top:2px;}
+  .foto-item .barra{display:flex;align-items:center;gap:8px;margin-top:10px;}
+  .foto-item .like{
+    border:none;background:#fff0f6;color:#d63384;cursor:pointer;
+    font-family:'Baloo 2',cursive;font-weight:700;font-size:1rem;
+    padding:7px 14px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;
+    transition:transform .12s,background .2s;
+  }
+  .foto-item .like:active{transform:scale(1.2);}
+  .foto-item .like.dado{background:#ffd9e8;}
+  .foto-item .share-mini,.foto-item .report-mini{
+    border:none;background:#f0f6ff;cursor:pointer;border-radius:999px;
+    padding:7px 11px;font-size:1rem;transition:background .2s;
+  }
+  .foto-item .share-mini:hover{background:#e0efff;}
+  .foto-item .report-mini{background:transparent;margin-left:auto;opacity:.45;font-size:.85rem;}
+  .foto-item .report-mini:hover{opacity:1;}
+  .galeria-vacia{text-align:center;color:#999;font-size:1.1rem;padding:30px 0;}
+
+  /* Lightbox para agrandar */
+  .lightbox{
+    position:fixed;inset:0;z-index:60;display:none;
+    background:rgba(20,10,40,.85);backdrop-filter:blur(4px);
+    align-items:center;justify-content:center;padding:20px;
+  }
+  .lightbox.abierto{display:flex;}
+  .lightbox .marco{max-width:92vw;max-height:92vh;text-align:center;}
+  .lightbox img{max-width:92vw;max-height:74vh;border-radius:18px;border:6px solid #fff;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+  .lightbox .lb-info{color:#fff;margin-top:14px;font-family:'Baloo 2',cursive;}
+  .lightbox .lb-info .lb-nom{font-size:1.4rem;font-weight:700;}
+  .lightbox .lb-acciones{margin-top:14px;display:flex;gap:12px;justify-content:center;}
+  .lightbox .lb-acciones button{
+    font-family:'Baloo 2',cursive;font-weight:700;font-size:1.05rem;color:#fff;
+    border:none;border-radius:999px;padding:11px 22px;cursor:pointer;
+  }
+  .lb-like{background:linear-gradient(90deg,#ff6fa5,#ff4f8b);}
+  .lb-share{background:linear-gradient(90deg,var(--turquesa),var(--azul));}
+  .lb-download{background:linear-gradient(90deg,var(--verde),var(--verde-prof));}
+  .lightbox .lb-acciones{flex-wrap:wrap;}
+  .lightbox .cerrar{position:fixed;top:16px;right:20px;font-size:2.4rem;color:#fff;cursor:pointer;background:none;border:none;}
+
   /* ---------- Footer ---------- */
   footer{
     text-align:center;padding:40px 20px 60px;margin-top:30px;
@@ -394,6 +484,7 @@
       <a href="#colores" class="nav-link">🎨 Colores</a>
       <a href="#fotos" class="nav-link">📸 Fotos</a>
       <a href="#origami" class="nav-link">🎎 Origami</a>
+      <a href="#galeria" class="nav-link">📤 Tu foto</a>
       <a href="#juego" class="nav-link">🎮 Juego</a>
       <a href="#compartir" class="nav-link">💌 Compartir</a>
       <a href="#qr" class="nav-link">📱 Escanéame</a>
@@ -525,6 +616,57 @@
       <div class="play"><span>▶️</span></div>
     </div>
     <p class="video-tip">👆 Toca para ver el video del origami</p>
+  </div>
+
+  <!-- GALERÍA COMUNITARIA -->
+  <h2 id="galeria" class="seccion-titulo reveal">📤 ¡Sube tu foto!</h2>
+  <p class="seccion-sub reveal">¿Ya hiciste tu origami? 🎎 ¿Viste una libélula? 🐉 ¡Súbela y compártela con todos! 💞</p>
+  <div class="galeria-comu reveal">
+
+    <!-- Formulario de subida -->
+    <div class="subir-card">
+      <label class="drop" id="drop">
+        <input type="file" id="fileInput" accept="image/*" hidden>
+        <span class="ico">📸</span>
+        <b>Toca para elegir tu foto</b>
+        <small>o arrástrala aquí (máx. 6 MB)</small>
+        <img class="previa" id="previa" alt="Vista previa">
+      </label>
+      <input type="text" id="inNombre" maxlength="40" placeholder="Tu nombre (opcional) 😊">
+      <textarea id="inMensaje" rows="2" maxlength="140" placeholder="Un mensajito (opcional) ✨"></textarea>
+      <button class="btn-subir" id="btnSubirFoto" disabled>🚀 Subir mi foto</button>
+      <div class="subir-estado" id="subirEstado"></div>
+    </div>
+
+    <!-- Compartir la galería -->
+    <div class="compartir" style="margin-bottom:26px">
+      <div class="botones-redes">
+        <a class="b-wa" id="gal-wa" target="_blank" rel="noopener">💬 Compartir galería</a>
+        <a class="b-fb" id="gal-fb" target="_blank" rel="noopener">👍 Facebook</a>
+        <button class="b-copy" onclick="compartirGaleria()">🔗 Compartir</button>
+      </div>
+    </div>
+
+    <!-- Cuadrícula de fotos -->
+    <div class="grid-fotos" id="gridFotos"></div>
+    <div class="galeria-vacia" id="galeriaVacia"></div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="if(event.target===this)cerrarLightbox()">
+    <button class="cerrar" onclick="cerrarLightbox()" aria-label="Cerrar">✕</button>
+    <div class="marco">
+      <img id="lbImg" src="" alt="Foto ampliada">
+      <div class="lb-info">
+        <div class="lb-nom" id="lbNom"></div>
+        <div id="lbMsg"></div>
+      </div>
+      <div class="lb-acciones">
+        <button class="lb-like" id="lbLike">❤️ <span id="lbLikeNum">0</span></button>
+        <button class="lb-share" id="lbShare">🔗 Compartir foto</button>
+        <button class="lb-download" id="lbDownload">⬇️ Descargar</button>
+      </div>
+    </div>
   </div>
 
   <!-- QUIZ -->
@@ -682,6 +824,257 @@
       setTimeout(()=>c.remove(),2600);
     }
   }
+
+  // ============================================================
+  //  GALERÍA COMUNITARIA (Supabase)
+  // ============================================================
+  const URL_GALERIA = URL_PAGINA + '#galeria';
+  const TXT_GALERIA = '🐉📸 ¡Mira y comparte fotos de libélulas y origamis en la página de Gael!';
+
+  // Compartir la sección galería
+  (function(){
+    const u=encodeURIComponent(URL_GALERIA), t=encodeURIComponent(TXT_GALERIA);
+    const wa=document.getElementById('gal-wa'), fb=document.getElementById('gal-fb');
+    if(wa) wa.href=`https://wa.me/?text=${t}%20${u}`;
+    if(fb) fb.href=`https://www.facebook.com/sharer/sharer.php?u=${u}`;
+  })();
+  async function compartirGaleria(){
+    if(navigator.share){ try{ await navigator.share({title:'Galería de la Libélula',text:TXT_GALERIA,url:URL_GALERIA}); return;}catch(e){return;} }
+    try{ await navigator.clipboard.writeText(URL_GALERIA); alert('✅ ¡Enlace de la galería copiado!'); }
+    catch(e){ alert(URL_GALERIA); }
+  }
+  window.compartirGaleria = compartirGaleria;
+
+  (function initGaleria(){
+    const cfg = window.LIBELULA_SUPABASE || {};
+    const grid = document.getElementById('gridFotos');
+    const vacia = document.getElementById('galeriaVacia');
+    const estado = document.getElementById('subirEstado');
+    const btnSubir = document.getElementById('btnSubirFoto');
+    const fileInput = document.getElementById('fileInput');
+    const drop = document.getElementById('drop');
+    const previa = document.getElementById('previa');
+
+    // Sin configurar: mostrar "muy pronto" y salir
+    if(!cfg.url || !cfg.anonKey){
+      vacia.innerHTML = '🐉 <b>¡Muy pronto!</b><br>Aquí podrás subir y compartir tus fotos. ✨';
+      btnSubir.disabled = true;
+      drop.style.opacity = '.6'; drop.style.pointerEvents='none';
+      return;
+    }
+
+    let sb;
+    function cliente(){
+      if(!sb){
+        if(!window.supabase){ return null; }
+        sb = window.supabase.createClient(cfg.url, cfg.anonKey);
+      }
+      return sb;
+    }
+
+    const LIKED_KEY = 'libelula_likes';
+    const liked = new Set(JSON.parse(localStorage.getItem(LIKED_KEY) || '[]'));
+    const guardarLikes = ()=> localStorage.setItem(LIKED_KEY, JSON.stringify([...liked]));
+
+    // --- Redimensionar imagen en el navegador ---
+    function redimensionar(file, maxLado, calidad){
+      return new Promise((resolve,reject)=>{
+        const img = new Image();
+        const fr = new FileReader();
+        fr.onload = ()=>{ img.src = fr.result; };
+        fr.onerror = reject;
+        img.onload = ()=>{
+          let {width:w, height:h} = img;
+          if(Math.max(w,h) > maxLado){
+            if(w>=h){ h = Math.round(h*maxLado/w); w = maxLado; }
+            else    { w = Math.round(w*maxLado/h); h = maxLado; }
+          }
+          const cv = document.createElement('canvas');
+          cv.width = w; cv.height = h;
+          cv.getContext('2d').drawImage(img, 0, 0, w, h);
+          cv.toBlob(b=> b ? resolve(b) : reject(new Error('blob')), 'image/webp', calidad);
+        };
+        img.onerror = reject;
+        fr.readAsDataURL(file);
+      });
+    }
+
+    // --- Selección de archivo + vista previa ---
+    let archivo = null;
+    function elegir(file){
+      if(!file) return;
+      if(!file.type.startsWith('image/')){ estado.textContent='⚠️ Elige una imagen, por favor.'; estado.style.color='var(--rojo)'; return; }
+      if(file.size > 6*1024*1024){ estado.textContent='⚠️ La foto es muy grande (máx. 6 MB).'; estado.style.color='var(--rojo)'; return; }
+      archivo = file;
+      previa.src = URL.createObjectURL(file);
+      previa.style.display = 'block';
+      btnSubir.disabled = false;
+      estado.textContent='';
+    }
+    fileInput.addEventListener('change', e=> elegir(e.target.files[0]));
+    drop.addEventListener('dragover', e=>{ e.preventDefault(); drop.classList.add('drag'); });
+    drop.addEventListener('dragleave', ()=> drop.classList.remove('drag'));
+    drop.addEventListener('drop', e=>{ e.preventDefault(); drop.classList.remove('drag'); elegir(e.dataTransfer.files[0]); });
+
+    // --- Subir ---
+    btnSubir.addEventListener('click', async ()=>{
+      const s = cliente();
+      if(!s || !archivo) return;
+      btnSubir.disabled = true;
+      estado.style.color = 'var(--azul-prof)';
+      estado.textContent = '⏳ Preparando tu foto...';
+      try{
+        const [web, thumb] = await Promise.all([
+          redimensionar(archivo, 1280, 0.82),
+          redimensionar(archivo, 480, 0.80)
+        ]);
+        const id = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())+Math.random().toString(16).slice(2));
+        const pWeb = `web/${id}.webp`, pThumb = `thumb/${id}.webp`;
+        estado.textContent = '☁️ Subiendo...';
+        const up1 = await s.storage.from('fotos').upload(pWeb, web, {contentType:'image/webp'});
+        if(up1.error) throw up1.error;
+        const up2 = await s.storage.from('fotos').upload(pThumb, thumb, {contentType:'image/webp'});
+        if(up2.error) throw up2.error;
+        const urlWeb = s.storage.from('fotos').getPublicUrl(pWeb).data.publicUrl;
+        const urlThumb = s.storage.from('fotos').getPublicUrl(pThumb).data.publicUrl;
+        const nombre = document.getElementById('inNombre').value.trim().slice(0,40) || null;
+        const mensaje = document.getElementById('inMensaje').value.trim().slice(0,140) || null;
+        const ins = await s.from('fotos').insert({nombre, mensaje, path:id, url:urlWeb, thumb_url:urlThumb}).select().single();
+        if(ins.error) throw ins.error;
+        // Pintar arriba
+        vacia.textContent='';
+        grid.insertBefore(tarjeta(ins.data), grid.firstChild);
+        // Reset
+        archivo=null; fileInput.value=''; previa.style.display='none'; previa.src='';
+        document.getElementById('inNombre').value=''; document.getElementById('inMensaje').value='';
+        estado.style.color='var(--verde-prof)';
+        estado.textContent='🎉 ¡Gracias! Tu foto ya está en la galería 💞';
+        lluviaConfeti();
+      }catch(err){
+        console.error(err);
+        estado.style.color='var(--rojo)';
+        estado.textContent='😢 No se pudo subir. Inténtalo de nuevo.';
+        btnSubir.disabled=false;
+      }
+    });
+
+    // --- Crear tarjeta de foto ---
+    function tarjeta(f){
+      const el = document.createElement('div');
+      el.className='foto-item';
+      const yaDio = liked.has(f.id);
+      el.innerHTML = `
+        <div class="ph"><img loading="lazy" decoding="async" src="${f.thumb_url||f.url}" alt="Foto de ${(f.nombre||'la comunidad')}"></div>
+        <div class="info">
+          ${f.nombre?`<div class="nom">${escapar(f.nombre)}</div>`:''}
+          ${f.mensaje?`<div class="msg">${escapar(f.mensaje)}</div>`:''}
+          <div class="barra">
+            <button class="like ${yaDio?'dado':''}">❤️ <span>${f.likes||0}</span></button>
+            <button class="share-mini" title="Compartir">🔗</button>
+            <button class="report-mini" title="Reportar">🚩</button>
+          </div>
+        </div>`;
+      const img = el.querySelector('.ph img');
+      el.querySelector('.ph').addEventListener('click', ()=> abrirLightbox(f));
+      el.querySelector('.like').addEventListener('click', ()=> toggleLike(f, el.querySelector('.like')));
+      el.querySelector('.share-mini').addEventListener('click', ()=> compartirFoto(f));
+      el.querySelector('.report-mini').addEventListener('click', ()=> reportar(f, el));
+      return el;
+    }
+    function escapar(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+    async function toggleLike(f, btn){
+      const s = cliente(); if(!s) return;
+      const span = btn.querySelector('span');
+      const yaDio = liked.has(f.id);
+      btn.classList.toggle('dado', !yaDio);
+      span.textContent = (parseInt(span.textContent||'0',10) + (yaDio?-1:1));
+      if(yaDio){ liked.delete(f.id); } else { liked.add(f.id); }
+      guardarLikes();
+      try{ await s.rpc(yaDio?'quitar_like':'dar_like', {foto_id:f.id}); }catch(e){ /* visual ya hecho */ }
+      // sincronizar lightbox si está abierto con esta foto
+      if(lbActual && lbActual.id===f.id){ document.getElementById('lbLikeNum').textContent=span.textContent; document.getElementById('lbLike').classList.toggle('dado', liked.has(f.id)); }
+    }
+
+    async function reportar(f, el){
+      if(!confirm('¿Reportar esta foto como inapropiada?')) return;
+      const s = cliente(); if(!s) return;
+      try{ await s.rpc('reportar', {foto_id:f.id}); el.style.display='none'; alert('Gracias. Revisaremos esta foto. 🙏'); }catch(e){}
+    }
+
+    // --- Compartir una foto (con miniatura real si el dispositivo lo permite) ---
+    async function compartirFoto(f){
+      const texto = `${TXT_GALERIA}`;
+      // Intentar compartir el archivo (sale con miniatura a WhatsApp/FB en móvil)
+      if(navigator.canShare){
+        try{
+          const r = await fetch(f.url); const blob = await r.blob();
+          const file = new File([blob], 'libelula.webp', {type:blob.type||'image/webp'});
+          if(navigator.canShare({files:[file]})){
+            await navigator.share({files:[file], text:texto, title:'Foto de la Libélula'});
+            return;
+          }
+        }catch(e){ /* sigue al fallback */ }
+      }
+      if(navigator.share){ try{ await navigator.share({title:'Foto de la Libélula', text:texto, url:f.url}); return; }catch(e){return;} }
+      // Fallback escritorio: copiar enlace de la imagen
+      try{ await navigator.clipboard.writeText(f.url); alert('✅ ¡Enlace de la foto copiado! Pégalo en WhatsApp o Facebook y mostrará la imagen.'); }
+      catch(e){ window.open(f.url,'_blank'); }
+    }
+
+    // --- Lightbox ---
+    let lbActual = null;
+    const lb = document.getElementById('lightbox');
+    function abrirLightbox(f){
+      lbActual = f;
+      document.getElementById('lbImg').src = f.url;
+      document.getElementById('lbNom').textContent = f.nombre || '';
+      document.getElementById('lbMsg').textContent = f.mensaje || '';
+      document.getElementById('lbLikeNum').textContent = f.likes || 0;
+      document.getElementById('lbLike').classList.toggle('dado', liked.has(f.id));
+      lb.classList.add('abierto');
+      document.body.style.overflow='hidden';
+    }
+    window.cerrarLightbox = function(){ lb.classList.remove('abierto'); document.body.style.overflow=''; };
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') cerrarLightbox(); });
+    document.getElementById('lbLike').addEventListener('click', ()=>{
+      if(!lbActual) return;
+      // Buscar la tarjeta de la grilla para mantener el contador sincronizado
+      const card = [...grid.querySelectorAll('.foto-item')].find(c=>c.__foto && c.__foto.id===lbActual.id);
+      const likeBtn = card ? card.querySelector('.like') : document.getElementById('lbLike');
+      toggleLike(lbActual, likeBtn);
+    });
+    document.getElementById('lbShare').addEventListener('click', ()=> lbActual && compartirFoto(lbActual));
+    document.getElementById('lbDownload').addEventListener('click', async ()=>{
+      if(!lbActual) return;
+      try{
+        const r = await fetch(lbActual.url); const blob = await r.blob();
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `libelula-${(lbActual.nombre||'foto').replace(/[^a-z0-9]/gi,'_')}.webp`;
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(()=>URL.revokeObjectURL(a.href), 2000);
+      }catch(e){ window.open(lbActual.url,'_blank'); }
+    });
+
+    // --- Cargar fotos existentes ---
+    async function cargar(){
+      const s = cliente();
+      if(!s){ setTimeout(cargar, 300); return; } // esperar al SDK
+      try{
+        const {data, error} = await s.from('fotos').select('*').order('created_at',{ascending:false}).limit(80);
+        if(error) throw error;
+        grid.innerHTML='';
+        if(!data || !data.length){ vacia.innerHTML='🐉 ¡Sé el primero en subir una foto! 📸'; return; }
+        vacia.textContent='';
+        data.forEach(f=>{ const t=tarjeta(f); t.__foto=f; grid.appendChild(t); });
+      }catch(e){
+        console.error(e);
+        vacia.textContent='No se pudieron cargar las fotos ahora. 😢';
+      }
+    }
+    cargar();
+  })();
 </script>
 </body>
 </html>
