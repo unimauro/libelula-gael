@@ -7,7 +7,7 @@
 <meta name="description" content="La libélula explicada para niños — la exposición de Gael (3 años). ¡Datos curiosos, fotos lindas y mucho color!">
 <meta property="og:title" content="🐉 La Libélula de Gael">
 <meta property="og:description" content="Descubre a la libélula: sus ojos grandes, sus cuatro alas y cómo vuela tan rápido. ¡Una exposición muy tierna!">
-<meta property="og:image" content="img/portada-libelula.png">
+<meta property="og:image" content="img/portada-libelula.webp">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐉</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -195,6 +195,28 @@
   }
   .galeria img:hover{transform:scale(1.05) rotate(1deg);}
 
+  /* ---------- Video origami ---------- */
+  .video-box{max-width:720px;margin:14px auto 10px;padding:0 20px;}
+  .video-marco{
+    position:relative;border-radius:26px;overflow:hidden;
+    border:6px solid #fff;box-shadow:0 14px 34px rgba(155,93,229,.28);
+    aspect-ratio:16/9;cursor:pointer;background:#000;
+  }
+  .video-marco img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;}
+  .video-marco:hover img{transform:scale(1.05);}
+  .video-marco .play{
+    position:absolute;inset:0;display:grid;place-items:center;
+    background:linear-gradient(180deg,rgba(155,93,229,.15),rgba(33,150,243,.35));
+  }
+  .video-marco .play span{
+    width:84px;height:84px;border-radius:50%;
+    background:rgba(255,255,255,.92);display:grid;place-items:center;
+    font-size:2.4rem;box-shadow:0 8px 22px rgba(0,0,0,.3);
+    animation:latir 1.4s ease-in-out infinite;
+  }
+  .video-marco iframe{width:100%;height:100%;border:0;display:block;}
+  .video-tip{text-align:center;font-size:1.05rem;color:var(--morado);font-weight:600;margin-top:14px;}
+
   /* ---------- Mini quiz ---------- */
   .quiz{max-width:680px;margin:30px auto;padding:0 20px;}
   .quiz-card{
@@ -297,7 +319,7 @@
       <circle cx="120" cy="31" r="3.5" fill="#ff9ec4"/>
     </svg>
 
-    <img class="hero-foto" src="img/portada-libelula.png" alt="Una libélula azul brillante">
+    <img class="hero-foto" src="img/portada-libelula.webp" alt="Una libélula azul brillante" fetchpriority="high" decoding="async">
     <div class="gael">🦸 Por Gael, 3 años 🦸</div>
     <div class="scroll-hint">¡Desliza para conocerla!<span class="flecha">👇</span></div>
   </header>
@@ -308,32 +330,32 @@
 
   <section class="tarjetas">
     <article class="card c-azul reveal">
-      <div class="pic"><span class="emoji-badge">🐉</span><img src="img/portada-libelula.png" alt="Libélula"></div>
+      <div class="pic"><span class="emoji-badge">🐉</span><img src="img/portada-libelula.webp" alt="Libélula" loading="lazy" decoding="async"></div>
       <div class="cuerpo"><h3>Es una LIBÉLULA</h3><p>Un insecto muy colorido que vive cerca del agua. ¡Es súper antigua!</p></div>
     </article>
 
     <article class="card c-turq reveal">
-      <div class="pic"><span class="emoji-badge">👀</span><img src="img/ojos-grandes.png" alt="Ojos grandes"></div>
+      <div class="pic"><span class="emoji-badge">👀</span><img src="img/ojos-grandes.webp" alt="Ojos grandes" loading="lazy" decoding="async"></div>
       <div class="cuerpo"><h3>Ojos GRANDES</h3><p>Tiene dos ojos enormes y puede ver casi para todos lados. ¡Nada se le escapa!</p></div>
     </article>
 
     <article class="card c-verde reveal">
-      <div class="pic"><span class="emoji-badge">🦋</span><img src="img/cuatro-alas.png" alt="Cuatro alas"></div>
+      <div class="pic"><span class="emoji-badge">🦋</span><img src="img/cuatro-alas.webp" alt="Cuatro alas" loading="lazy" decoding="async"></div>
       <div class="cuerpo"><h3>Cuatro ALAS</h3><p>Tiene 4 alitas transparentes. Las mueve todas a la vez para volar muy bien.</p></div>
     </article>
 
     <article class="card c-amarillo reveal">
-      <div class="pic"><span class="emoji-badge">💨</span><img src="img/vuela-rapido.png" alt="Vuela rápido"></div>
+      <div class="pic"><span class="emoji-badge">💨</span><img src="img/vuela-rapido.webp" alt="Vuela rápido" loading="lazy" decoding="async"></div>
       <div class="cuerpo"><h3>Vuela RÁPIDO</h3><p>¡Es muy veloz! Puede volar de lado y hasta hacia atrás, como un helicóptero.</p></div>
     </article>
 
     <article class="card c-rosa reveal">
-      <div class="pic"><span class="emoji-badge">🦟</span><img src="img/come-insectos.png" alt="Come insectos"></div>
+      <div class="pic"><span class="emoji-badge">🦟</span><img src="img/come-insectos.webp" alt="Come insectos" loading="lazy" decoding="async"></div>
       <div class="cuerpo"><h3>Come INSECTOS</h3><p>Atrapa mosquitos y bichitos volando. ¡Nos ayuda mucho!</p></div>
     </article>
 
     <article class="card c-morado reveal">
-      <div class="pic"><span class="emoji-badge">💧</span><img src="img/vive-humedad.png" alt="Vive en el agua"></div>
+      <div class="pic"><span class="emoji-badge">💧</span><img src="img/vive-humedad.webp" alt="Vive en el agua" loading="lazy" decoding="async"></div>
       <div class="cuerpo"><h3>Vive en el AGUA</h3><p>Nace en charcos y lagunas. Le encantan los lugares con plantitas y agua.</p></div>
     </article>
   </section>
@@ -350,7 +372,7 @@
   <!-- COLORES -->
   <h2 class="seccion-titulo reveal">🎨 ¡Libélulas de colores!</h2>
   <div class="colores-box reveal">
-    <img src="img/colores.png" alt="Libélulas azul, verde, amarilla y roja">
+    <img src="img/colores.webp" alt="Libélulas azul, verde, amarilla y roja" loading="lazy" decoding="async">
     <p>Azul 💙 &nbsp; Verde 💚 &nbsp; Amarilla 💛 &nbsp; Roja ❤️</p>
   </div>
 
@@ -358,14 +380,28 @@
   <h2 class="seccion-titulo reveal">📸 Más fotos lindas</h2>
   <p class="seccion-sub reveal">¡Mira qué bonita es!</p>
   <div class="galeria">
-    <img src="img/libelula-trigo.png" alt="Libélula azul en el trigo" class="reveal">
-    <img src="img/ojos-marron.png" alt="Ojos grandes de la libélula" class="reveal">
-    <img src="img/cuatro-alas-flores.png" alt="Libélula con flores" class="reveal">
-    <img src="img/vuela-verde.png" alt="Libélula volando" class="reveal">
-    <img src="img/come-insectos-cielo.png" alt="Libélula comiendo en el cielo" class="reveal">
-    <img src="img/cuatro-alas-rojas.png" alt="Libélula con flores rojas" class="reveal">
-    <img src="img/come-insectos-cielo2.png" alt="Libélula cazando" class="reveal">
-    <img src="img/seis-datos.png" alt="Los seis datos de la libélula" class="reveal">
+    <img src="img/libelula-trigo.webp" alt="Libélula azul en el trigo" class="reveal" loading="lazy" decoding="async">
+    <img src="img/ojos-marron.webp" alt="Ojos grandes de la libélula" class="reveal" loading="lazy" decoding="async">
+    <img src="img/cuatro-alas-flores.webp" alt="Libélula con flores" class="reveal" loading="lazy" decoding="async">
+    <img src="img/vuela-verde.webp" alt="Libélula volando" class="reveal" loading="lazy" decoding="async">
+    <img src="img/come-insectos-cielo.webp" alt="Libélula comiendo en el cielo" class="reveal" loading="lazy" decoding="async">
+    <img src="img/cuatro-alas-rojas.webp" alt="Libélula con flores rojas" class="reveal" loading="lazy" decoding="async">
+    <img src="img/come-insectos-cielo2.webp" alt="Libélula cazando" class="reveal" loading="lazy" decoding="async">
+    <img src="img/seis-datos.webp" alt="Los seis datos de la libélula" class="reveal" loading="lazy" decoding="async">
+  </div>
+
+  <!-- VIDEO ORIGAMI -->
+  <h2 class="seccion-titulo reveal">🎎 ¡Haz tu libélula de papel!</h2>
+  <p class="seccion-sub reveal">Mira el video y aprende origami con papá o mamá 💜</p>
+  <div class="video-box reveal">
+    <div class="video-marco" id="videoOrigami" onclick="cargarVideo()" role="button" tabindex="0"
+         aria-label="Reproducir video de origami de libélula"
+         onkeydown="if(event.key==='Enter'||event.key===' '){cargarVideo()}">
+      <img src="https://i.ytimg.com/vi/TitBxRWremk/hqdefault.jpg"
+           alt="Video: cómo hacer una libélula de origami" loading="lazy" decoding="async">
+      <div class="play"><span>▶️</span></div>
+    </div>
+    <p class="video-tip">👆 Toca para ver el video del origami</p>
   </div>
 
   <!-- QUIZ -->
@@ -411,6 +447,15 @@
     entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);} });
   },{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Video origami: carga el iframe solo al tocar (mejor rendimiento)
+  function cargarVideo(){
+    const m=document.getElementById('videoOrigami');
+    m.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/TitBxRWremk?autoplay=1&rel=0" '+
+      'title="Origami de libélula" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" '+
+      'allowfullscreen></iframe>';
+    m.style.cursor='default';
+  }
 
   // Quiz
   function responder(btn,correcto){
