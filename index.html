@@ -335,7 +335,7 @@
 
   /* ---------- QR ---------- */
   .qr-box{
-    max-width:340px;margin:26px auto 0;
+    max-width:340px;margin:26px auto 0;scroll-margin-top:84px;
     background:#fff;border-radius:28px;padding:22px 22px 18px;
     border:4px solid var(--turquesa);
     box-shadow:0 12px 30px rgba(0,194,203,.22);
@@ -396,6 +396,7 @@
       <a href="#origami" class="nav-link">🎎 Origami</a>
       <a href="#juego" class="nav-link">🎮 Juego</a>
       <a href="#compartir" class="nav-link">💌 Compartir</a>
+      <a href="#qr" class="nav-link">📱 Escanéame</a>
     </div>
   </nav>
 
@@ -554,7 +555,7 @@
     <div class="copiado-msg" id="copiado"></div>
 
     <!-- QR -->
-    <div class="qr-box">
+    <div class="qr-box" id="qr">
       <h3>📱 ¡Escanéame!</h3>
       <p>Apunta tu celular al código</p>
       <img src="qr-libelula.png" alt="Código QR de la página de la libélula" loading="lazy" decoding="async">
