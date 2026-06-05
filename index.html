@@ -3,6 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DK72Q3SL9Y"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DK72Q3SL9Y');
+</script>
+
 <title>🐉 La Libélula de Gael 💙</title>
 <meta name="description" content="La libélula explicada para niños — la exposición de Gael (3 años). ¡Datos curiosos, fotos lindas y mucho color!">
 
@@ -69,6 +79,54 @@
   }
 
   .wrap{position:relative;z-index:1;}
+
+  /* ---------- Menú de navegación ---------- */
+  .navbar{
+    position:sticky;top:0;z-index:20;
+    background:rgba(255,255,255,.82);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    box-shadow:0 4px 18px rgba(33,150,243,.14);
+    border-bottom:3px solid #e6f4ff;
+  }
+  .navbar .nav-inner{
+    display:flex;gap:8px;align-items:center;
+    max-width:1100px;margin:0 auto;padding:10px 14px;
+    overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;
+  }
+  .navbar .nav-inner::-webkit-scrollbar{display:none;}
+  .navbar .marca{
+    font-family:'Baloo 2',cursive;font-weight:800;font-size:1.15rem;
+    color:var(--azul-prof);white-space:nowrap;flex-shrink:0;
+    margin-right:4px;text-decoration:none;
+  }
+  .navbar a.nav-link{
+    flex-shrink:0;white-space:nowrap;text-decoration:none;
+    font-family:'Baloo 2',cursive;font-weight:600;font-size:.98rem;
+    color:var(--texto);
+    padding:8px 15px;border-radius:999px;
+    background:#f3f9ff;border:2px solid transparent;
+    transition:transform .12s, background .2s, color .2s, border-color .2s;
+  }
+  .navbar a.nav-link:hover{transform:translateY(-2px);background:#e3f2ff;}
+  .navbar a.nav-link.activo{
+    background:linear-gradient(90deg,var(--turquesa),var(--azul));
+    color:#fff;border-color:#fff;
+    box-shadow:0 4px 0 rgba(21,101,192,.25);
+  }
+  /* que el título no quede tapado por la barra al saltar */
+  .seccion-titulo[id]{scroll-margin-top:74px;}
+
+  /* botón "subir" flotante */
+  .subir{
+    position:fixed;right:18px;bottom:18px;z-index:25;
+    width:52px;height:52px;border-radius:50%;border:none;cursor:pointer;
+    background:linear-gradient(135deg,var(--morado),var(--rosa));
+    color:#fff;font-size:1.5rem;box-shadow:0 8px 18px rgba(155,93,229,.4);
+    opacity:0;transform:translateY(20px) scale(.8);pointer-events:none;
+    transition:opacity .3s, transform .3s;
+  }
+  .subir.visible{opacity:1;transform:none;pointer-events:auto;}
+  .subir:hover{transform:translateY(-3px) scale(1.05);}
 
   /* ---------- HERO ---------- */
   header.hero{
@@ -315,8 +373,22 @@
 
 <div class="wrap">
 
+  <!-- MENÚ DE NAVEGACIÓN -->
+  <nav class="navbar" aria-label="Menú de secciones">
+    <div class="nav-inner">
+      <a href="#inicio" class="marca">🐉 Libélula</a>
+      <a href="#datos" class="nav-link">🔎 Datos</a>
+      <a href="#sabias" class="nav-link">🌟 ¿Sabías?</a>
+      <a href="#colores" class="nav-link">🎨 Colores</a>
+      <a href="#fotos" class="nav-link">📸 Fotos</a>
+      <a href="#origami" class="nav-link">🎎 Origami</a>
+      <a href="#juego" class="nav-link">🎮 Juego</a>
+      <a href="#compartir" class="nav-link">💌 Compartir</a>
+    </div>
+  </nav>
+
   <!-- HERO -->
-  <header class="hero">
+  <header class="hero" id="inicio">
     <div class="estrella">⭐</div>
     <div class="sub">✨ Mi exposición sobre la ✨</div>
     <h1>LIBÉLULA</h1>
@@ -363,7 +435,7 @@
   </header>
 
   <!-- 6 DATOS -->
-  <h2 class="seccion-titulo reveal">🔎 6 cosas geniales de la libélula</h2>
+  <h2 id="datos" class="seccion-titulo reveal">🔎 6 cosas geniales de la libélula</h2>
   <p class="seccion-sub reveal">Toca cada tarjeta y descúbrelas 💫</p>
 
   <section class="tarjetas">
@@ -399,7 +471,7 @@
   </section>
 
   <!-- SABÍAS QUE -->
-  <h2 class="seccion-titulo reveal">🌟 ¿Sabías que...?</h2>
+  <h2 id="sabias" class="seccion-titulo reveal">🌟 ¿Sabías que...?</h2>
   <div class="sabias">
     <div class="burbuja reveal"><span class="ico">👑</span><div>Hace muchííísimo tiempo existían libélulas <b>gigantes</b>, ¡tan grandes como un gato!</div></div>
     <div class="burbuja reveal"><span class="ico">🌈</span><div>Las hay de muchos colores: <b>azules, verdes, amarillas y rojas</b>.</div></div>
@@ -408,14 +480,14 @@
   </div>
 
   <!-- COLORES -->
-  <h2 class="seccion-titulo reveal">🎨 ¡Libélulas de colores!</h2>
+  <h2 id="colores" class="seccion-titulo reveal">🎨 ¡Libélulas de colores!</h2>
   <div class="colores-box reveal">
     <img src="img/colores.webp" alt="Libélulas azul, verde, amarilla y roja" loading="lazy" decoding="async">
     <p>Azul 💙 &nbsp; Verde 💚 &nbsp; Amarilla 💛 &nbsp; Roja ❤️</p>
   </div>
 
   <!-- GALERÍA -->
-  <h2 class="seccion-titulo reveal">📸 Más fotos lindas</h2>
+  <h2 id="fotos" class="seccion-titulo reveal">📸 Más fotos lindas</h2>
   <p class="seccion-sub reveal">¡Mira qué bonita es!</p>
   <div class="galeria">
     <img src="img/libelula-trigo.webp" alt="Libélula azul en el trigo" class="reveal" loading="lazy" decoding="async">
@@ -429,7 +501,7 @@
   </div>
 
   <!-- VIDEO ORIGAMI -->
-  <h2 class="seccion-titulo reveal">🎎 ¡Haz tu libélula de papel!</h2>
+  <h2 id="origami" class="seccion-titulo reveal">🎎 ¡Haz tu libélula de papel!</h2>
   <p class="seccion-sub reveal">Mira el video y aprende origami con papá o mamá 💜</p>
   <div class="video-box reveal">
     <div class="video-marco" id="videoOrigami" onclick="cargarVideo()" role="button" tabindex="0"
@@ -443,7 +515,7 @@
   </div>
 
   <!-- QUIZ -->
-  <h2 class="seccion-titulo reveal">🎮 ¡Juego rápido!</h2>
+  <h2 id="juego" class="seccion-titulo reveal">🎮 ¡Juego rápido!</h2>
   <div class="quiz reveal">
     <div class="quiz-card">
       <h3>¿Cuántas alas tiene la libélula?</h3>
@@ -457,7 +529,7 @@
   </div>
 
   <!-- COMPARTIR -->
-  <h2 class="seccion-titulo reveal">💌 ¡Comparte la libélula!</h2>
+  <h2 id="compartir" class="seccion-titulo reveal">💌 ¡Comparte la libélula!</h2>
   <div class="compartir reveal">
     <p>Envíasela a tus amiguitos y a la familia 🐉💙</p>
     <div class="botones-redes">
@@ -478,9 +550,30 @@
     <p class="cierre">…Y esta fue nuestra <b>Operación Libélula</b> 🐉✨</p>
   </footer>
 
+  <button class="subir" id="btnSubir" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">⬆️</button>
+
 </div>
 
 <script>
+  // ---- Menú: resaltar sección activa + botón subir ----
+  const navLinks = Array.from(document.querySelectorAll('.navbar a.nav-link'));
+  const secciones = navLinks.map(a=>document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+  const navIO = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const id=e.target.id;
+        navLinks.forEach(a=>a.classList.toggle('activo', a.getAttribute('href')==='#'+id));
+      }
+    });
+  },{rootMargin:'-45% 0px -50% 0px', threshold:0});
+  secciones.forEach(s=>navIO.observe(s));
+
+  // Botón subir aparece al bajar
+  const btnSubir=document.getElementById('btnSubir');
+  window.addEventListener('scroll', ()=>{
+    btnSubir.classList.toggle('visible', window.scrollY>500);
+  }, {passive:true});
+
   // ---- Compartir en redes ----
   const URL_PAGINA = 'https://unimauro.github.io/libelula/';
   const TEXTO_SHARE = '🐉 Mira la exposición de la Libélula de Gael, ¡es muy linda! 💙';
