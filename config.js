@@ -7,6 +7,6 @@
 //  Mientras esté vacío, la sección mostrará "¡Muy pronto!"
 // ============================================================
 window.LIBELULA_SUPABASE = {
-  url:     "",   // ej. "https://xxxxx.supabase.co"
-  anonKey: ""    // ej. "eyJhbGciOi..."
+  url:     "https://dmgvwksdlotqhfshlwzz.supabase.co",
+  anonKey: "sb_publishable_sHyPPX3x0Zvguls_tSks4g_IWYhMriw"
 };
